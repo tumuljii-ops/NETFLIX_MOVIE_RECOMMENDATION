@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from src.recommend import (
+from Backend.recommend import (
     get_top_recommendations,
     get_user_stats
 )
