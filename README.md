@@ -1,5 +1,16 @@
 # 🎬 Netflix Recommendation System using Matrix Factorization
 
+## 🚀 Live Demo
+
+### Frontend
+https://netflixmovierecommendation-2xttfw5igudh2ddf6cdccm.streamlit.app/
+
+### Backend API
+https://netflix-movie-recommendation-3.onrender.com
+
+### API Documentation
+https://netflix-movie-recommendation-3.onrender.com/docs
+
 ## Overview
 
 This project is an end-to-end Movie Recommendation System built using Matrix Factorization techniques on the MovieLens 100K dataset.
