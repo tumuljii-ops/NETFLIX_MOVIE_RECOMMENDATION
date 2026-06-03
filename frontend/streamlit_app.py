@@ -2,6 +2,14 @@ import streamlit as st
 import requests
 
 # ==========================================
+# BACKEND URL
+# ==========================================
+
+BACKEND_URL = (
+    "https://netflix-movie-recommendation-3.onrender.com"
+)
+
+# ==========================================
 # PAGE CONFIG
 # ==========================================
 
@@ -39,17 +47,19 @@ user_id = st.number_input(
 
 if st.button("Recommend Movies"):
 
-    # --------------------------------------
-    # USER STATS API
-    # --------------------------------------
+    # ======================================
+    # USER STATS
+    # ======================================
 
     stats_url = (
-        f"https://netflix-movie-recommendation-3.onrender.com"
+        f"{BACKEND_URL}/user_stats/{user_id}"
     )
 
-    stats_response = requests.get(
-        stats_url
-    )
+    stats_response = requests.get(stats_url)
+
+    if stats_response.status_code != 200:
+        st.error("Backend API Error")
+        st.stop()
 
     stats = stats_response.json()
 
@@ -72,17 +82,19 @@ if st.button("Recommend Movies"):
 
     st.divider()
 
-    # --------------------------------------
-    # RECOMMENDATION API
-    # --------------------------------------
+    # ======================================
+    # RECOMMENDATIONS
+    # ======================================
 
     rec_url = (
-        f"http://127.0.0.1:8000/recommend/{user_id}"
+        f"{BACKEND_URL}/recommend/{user_id}"
     )
 
-    rec_response = requests.get(
-        rec_url
-    )
+    rec_response = requests.get(rec_url)
+
+    if rec_response.status_code != 200:
+        st.error("Recommendation API Error")
+        st.stop()
 
     recs = rec_response.json()
 
@@ -90,9 +102,7 @@ if st.button("Recommend Movies"):
         "🎥 Top 5 Recommendations"
     )
 
-    for movie in recs[
-        "recommendations"
-    ]:
+    for movie in recs["recommendations"]:
 
         st.write(
             f"⭐ {movie['movie']}"
