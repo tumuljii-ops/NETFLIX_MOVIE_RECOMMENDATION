@@ -44,7 +44,7 @@ if st.button("Recommend Movies"):
     # --------------------------------------
 
     stats_url = (
-        f"http://127.0.0.1:8000/user_stats/{user_id}"
+        f"https://netflix-movie-recommendation-3.onrender.com"
     )
 
     stats_response = requests.get(
